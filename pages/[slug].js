@@ -33,7 +33,6 @@ export async function getStaticPaths() {
   return {
     paths,
     fallback: false, // can also be true or 'blocking'
-    revalidate: 300
   }
 }
 
@@ -56,6 +55,7 @@ export async function getStaticProps(context) {
   return {
     // Passed to the page component as props
     props: { post },
+    revalidate: 300
   }
 }
 
