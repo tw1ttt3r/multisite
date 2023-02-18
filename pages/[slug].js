@@ -1,3 +1,5 @@
+import Image from "next/image"
+import Link from "next/link"
 import DirectusSource from "../lib/directus"
 
 const PageDetail = ({ post }) => {
@@ -6,7 +8,14 @@ const PageDetail = ({ post }) => {
 
   return (
     <div>
-      <h1>hola desde el detalle</h1>
+      <Link href="/" legacyBehavior passHref>
+        <a>
+          Página principal
+        </a>
+      </Link>
+      <h1>{post.title}</h1>
+      <Image priority src={`${process.env.NEXT_PUBLIC_SOURCE}${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}${post.main_image}`} alt="image_msg" width={500} height={500} />
+      <div dangerouslySetInnerHTML={ { __html: post.body } } />
     </div>
   )
 }
@@ -37,18 +46,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-
+  const { params: { slug } } = context
+ 
   const filters = {
-    fields: ['slug', 'title', 'main_image', 'body'],
+    fields: ['title', 'main_image', 'body'],
     filter: {
+      slug,
       status: "published",
       site: process.env.NEXT_PUBLIC_SITE
     }
   }
 
   const publicData = await DirectusSource.items(process.env.NEXT_PUBLIC_MODEL_DATA).readByQuery({ ...filters })
-
-  console.log("publicData", publicData.data)
 
   const post = !!Object.keys(publicData.data[0]).length ? publicData.data[0] : {}
 
