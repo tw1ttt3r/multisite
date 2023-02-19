@@ -64,7 +64,7 @@ export async function getStaticProps(context) {
   return {
     // Passed to the page component as props
     props: { post },
-    revalidate: process.env.NEXT_PUBLIC_REVALIDATION
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATION)
   }
 }
 
