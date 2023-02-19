@@ -41,7 +41,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false, // can also be true or 'blocking'
+    fallback: 'blocking', // can also be true or 'blocking'
   }
 }
 
@@ -64,7 +64,7 @@ export async function getStaticProps(context) {
   return {
     // Passed to the page component as props
     props: { post },
-    revalidate: 300
+    revalidate: Number(process.env.NEXT_PUBLIC_REVALIDATION)
   }
 }
 
