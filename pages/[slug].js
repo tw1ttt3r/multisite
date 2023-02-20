@@ -55,9 +55,7 @@ export async function getStaticProps(context) {
   const filters = {
     fields: ['title', 'main_image', 'body'],
     filter: {
-      slug,
-      status: "published",
-      site: process.env.NEXT_PUBLIC_SITE
+      slug
     }
   }
 
