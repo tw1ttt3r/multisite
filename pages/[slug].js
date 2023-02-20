@@ -22,11 +22,15 @@ const PageDetail = ({ post }) => {
 
 export async function getStaticPaths() {
 
+  const site = Array.from(new Set([ '0', process.env.NEXT_PUBLIC_SITE ]))
+
   const filters = {
     fields: ['slug'],
     filter: {
       status: "published",
-      site: process.env.NEXT_PUBLIC_SITE
+      site: {
+        "_in": site
+      }
     }
   }
 
@@ -51,9 +55,7 @@ export async function getStaticProps(context) {
   const filters = {
     fields: ['title', 'main_image', 'body'],
     filter: {
-      slug,
-      status: "published",
-      site: process.env.NEXT_PUBLIC_SITE
+      slug
     }
   }
 

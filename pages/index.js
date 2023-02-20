@@ -15,7 +15,7 @@ export default function Home() {
           allNews.map( (item, i) => <Link key={`new_${i}`} href={`/${item.slug}`} legacyBehavior passHref><a>
             <h1>{ item.title }</h1>
             <div className="w-[300px] h-[300px] relative">
-              <Image className="object-contain" fill priority={!i} src={`${process.env.NEXT_PUBLIC_SOURCE}${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}${item.main_image}`} alt="image_msg" />
+              <Image className="object-contain" style={{height: "100%", width:"100%"}} fill priority={!i} src={`${process.env.NEXT_PUBLIC_SOURCE}${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}${item.main_image}`} alt="image_msg" />
             </div>
             <p>{item.abstract}</p>
           </a></Link> )
