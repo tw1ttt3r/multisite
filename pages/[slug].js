@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import PageLayout from "../layout/page"
 import DirectusSource from "../lib/directus"
 
 const PageDetail = ({ post }) => {
@@ -17,6 +18,14 @@ const PageDetail = ({ post }) => {
       <Image priority src={`${process.env.NEXT_PUBLIC_SOURCE}${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}${post.main_image}`} alt="image_msg" width={500} height={500} />
       <div dangerouslySetInnerHTML={ { __html: post.body } } />
     </div>
+  )
+}
+
+PageDetail.getLayout = function getLayout(page) {
+  return(
+    <PageLayout>
+      { page }
+    </PageLayout>
   )
 }
 
