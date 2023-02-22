@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import PageLayout from "../layout/page"
 import useNews from "../lib/useNews"
 
 export default function Home() {
@@ -23,5 +24,13 @@ export default function Home() {
       </section> }
       { !allNews?.length && <h1>Ninguna noticia disponible... </h1> }
     </>
+  )
+}
+
+Home.getLayout = function getLayout(page) {
+  return(
+    <PageLayout>
+      { page }
+    </PageLayout>
   )
 }
